@@ -20,6 +20,14 @@ const buildpath = path.join(_dirname,"../frontend/build");
 app.use(express.static(buildpath));
 app.use(cors({"origin":"*"}));
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
+
 
 // MySQL database connection pool
 const db = mysql.createPool({
