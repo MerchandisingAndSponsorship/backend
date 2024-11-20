@@ -111,7 +111,7 @@ app.post('/api/register', async (req, res) => {
 
   try {
     // Check if email or roll number is already registered
-    const [checkResult] = await db.query('SELECT * FROM users WHERE email = ? OR Roll_Number = ?', [email, Roll_Number]);
+    const [checkResult] = await db.query('SELECT * FROM users WHERE email = ? AND Roll_Number = ?', [email, Roll_Number]);
 
     if (checkResult.length > 0) {
       return res.status(409).json({ error: 'Email or Roll Number already registered' });
